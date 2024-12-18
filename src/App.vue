@@ -1,8 +1,11 @@
 <template>
-    <div id="app">
-      <router-view />
-    </div>
-  </template>
+  <div id="app">
+    <h1>Diary App</h1>
+    <router-link to="/login">Login</router-link> | 
+    <router-link to="/register">Register</router-link>
+    <router-view />
+  </div>
+</template>
   
   <script>
   export default {
