@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # Сервис для PostgreSQL
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Сервис для Node.js приложения
+  backend:
+    build: .
+    container_name: backend_container
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres123
+      DB_NAME: postgres
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+
